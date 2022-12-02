@@ -1,3 +1,4 @@
+"use strict"
 //on créer une variable basket, qui sera dans le localStorage qui aura pour nom "appAdrien1103Kanaps"
 let basket = localStorage.getItem("appAdrien1103Kanaps")
 //on créer une variable basketwithinfo qui est un tableau qui affichera le panier 
@@ -165,6 +166,27 @@ if (!basket) {
 
   })
 }
+
+document.getElementById("firstName").pattern = "\\w{3,16}"
+document.getElementById("lastName").pattern = "\\w{3,16}"
+document.getElementById("address").pattern = "([0-9]*) ?([a-zA-Z,\. ]*)"
+document.getElementById("city").pattern = "\\w{3,16}"
+//document.getElementById("email").pattern = "^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$"
+
+function bob() {
+  let firstName = document.getElementById("firstName").value
+  const contact = { firstName, lastName, address, city, email }
+  /*Créer un objet ou on va appeler le champ contact venant du formulaire 
+  et les produits venant du localStorage ('appAdrien1103'),
+   pour pouvoir l'envoyer à l'api */
+  let produit = [] //utiliser le localStorage, essayer d'utiliser une méthode de Array//
+  let formInfo = { contact, produit };
+
+
+
+}
+
+
 
 function updateNumberArticles() {
   location.reload();
