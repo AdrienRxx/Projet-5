@@ -173,20 +173,44 @@ document.getElementById("address").pattern = "([0-9]*) ?([a-zA-Z,\. ]*)"
 document.getElementById("city").pattern = "\\w{3,16}"
 //document.getElementById("email").pattern = "^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$"
 
-function bob() {
+async function bob(e) {
+  e.preventDefault()
   let firstName = document.getElementById("firstName").value
+  let lastName = document.getElementById("lastName").value
+  let address = document.getElementById("address").value
+  let city = document.getElementById("city").value
+  let email = document.getElementById("email").value
+
   const contact = { firstName, lastName, address, city, email }
   /*Créer un objet ou on va appeler le champ contact venant du formulaire 
   et les produits venant du localStorage ('appAdrien1103'),
    pour pouvoir l'envoyer à l'api */
-  let produit = [] //utiliser le localStorage, essayer d'utiliser une méthode de Array//
-  let formInfo = { contact, produit };
+  //utiliser le localStorage, essayer d'utiliser une méthode de Array//
+  /** liste des produits
+   * @type {Array}
+   */
+  let products = JSON.parse(localStorage.getItem("appAdrien1103Kanaps")).map((value) => value._id)
+  console.log(products)
 
+  let formInfo = { contact, products };
+  console.log(formInfo)
 
-
+  let response = await fetch("http://localhost:3000/api/products/order", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formInfo),
+  });
+  /** liste des produits
+  * @type {{contact:any,produit:any,orderId:string}}
+  */
+  const json = await response.json();
+  document.location = `./confirmation.html?orderId=${json.orderId}`;
+  console.log("retour de la requete", json)
 }
 
-
+document.getElementById("order").form.addEventListener("submit", bob)
 
 function updateNumberArticles() {
   location.reload();

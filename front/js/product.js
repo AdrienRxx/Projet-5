@@ -1,9 +1,9 @@
 
 // récupere l'id du produit sélectionné sur la page précedente via l'url 
 const searchurl = document.location.search
-console.log(searchurl)
-const searchparam = new URLSearchParams(searchurl)
-const id = searchparam.get("id")
+console.log(confirmationUrl)
+const searchparam = new URLSearchParams(confirmationUrl)
+const id = configurationParam.get("id")
 console.log(id)
 fetch("http://localhost:3000/api/products/" + id)
   .then(function (response) {
