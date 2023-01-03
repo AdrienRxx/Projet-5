@@ -1,3 +1,4 @@
+import { addToBasket } from "./cartManager.js"
 
 const searchurl = document.location.search
 console.log(searchurl)
@@ -48,7 +49,7 @@ function infoArticle() {
 
   // On récupère le bouton et on lui ajoute un eventlistener "click" 
   document.getElementById("addToCart").addEventListener("click", function () {
-    alert("vous avez clické");
+    //alert("vous avez clické");
   });
 
 
@@ -91,7 +92,7 @@ function infoArticle() {
       alert("Pour valider le choix de cet article, veuillez renseigner une color, et/ou une quantity valide entre 1 et 100");
     } else {
       //sinon on ajoute dans la panier 
-      addToBasket();
+      addToBasket(articleClient);
       //avec une alerte le clic effectué 
       console.log("clic effectué");
       //on revient à la page accueil
@@ -102,29 +103,4 @@ function infoArticle() {
 
 infoArticle()
 
-// fontcion ajout au panier 
-function addToBasket() {
-  //variabla stored items créaction dans le local storage de "appAdrien1103Kanaps"
-  let storedItems = localStorage.getItem("appAdrien1103Kanaps")
-  //si stored items est vide alors on stored item est égal dans un tableau à articledclient
-  if (!storedItems) {
-    storedItems = [articleClient]
-  } else {
-    //sinon on extrait ce qu'il y avait déjà dans le local storage donc un tableau 
-    storedItems = JSON.parse(storedItems)
-    // on une constante index qui est égale à stored items (renvoie l'indice du premier élément du tableau qui satisfait une condition donnée par une fonction.)
-    const index = storedItems.findIndex(function (storedItem) {
-      //on retourne alors storeditem.color qui est égale à articleclient.color, donc storeditem.id est égale à articleclient._id
-      return storedItem.color === articleClient.color && storedItem._id === articleClient._id
-    })
-    //si un élément dans la panier existe déjà avec les critéres de l'élement qu'on veut ajouter (color ,id )
-    if (index > -1) {
-      storedItems[index] = articleClient
-    } else {
-      //sinon storeditems ajoute les articles
-      storedItems.push(articleClient)
-    }
-  }
-  //grace à setItem, on lui ajoute le nom du storage et on converti la valeur en json , permet de les ajouter à l'emplacement de stockage, sinon elle met à jour la valeur si la clé existe déjà.
-  localStorage.setItem("appAdrien1103Kanaps", JSON.stringify(storedItems))
-}
+
