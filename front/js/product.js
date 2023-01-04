@@ -1,9 +1,9 @@
 import { addToBasket } from "./cartManager.js"
 
-const searchurl = document.location.search
-console.log(searchurl)
-const searchparam = new URLSearchParams(searchurl)
-const id = searchparam.get("id")
+const searchUrl = document.location.search
+console.log(searchUrl)
+const searchParam = new URLSearchParams(searchUrl)
+const id = searchParam.get("id")
 console.log(id)
 // récupere l'id du produit sélectionné sur la page précedente via l'url 
 function idRecuperation() {
@@ -54,19 +54,19 @@ function infoArticle() {
 
 
   // ON ECOUTE LA color 
-  const chosecolor = document.querySelector("#colors");
+  const choseColor = document.querySelector("#colors");
 
-  chosecolor.addEventListener("input", (ec) => {
+  choseColor.addEventListener("input", (ec) => {
     let colorProduit;
     colorProduit = ec.target.value;
     articleClient.color = colorProduit;
     console.log(colorProduit);
 
   });
-  const chosequantity = document.querySelector('input[id="quantity"]');
+  const choseQuantity = document.querySelector('input[id="quantity"]');
   let quantityProduct;
   // On écoute ce qu'il se passe dans input[name="itemQuantity"]
-  chosequantity.addEventListener("input", (eq) => {
+  choseQuantity.addEventListener("input", (eq) => {
     // on récupère la valeur de la cible de l'évenement dans color
     quantityProduct = eq.target.value;
     // on ajoute la quantity à l'objet panierClient
@@ -74,9 +74,9 @@ function infoArticle() {
     console.log(quantityProduct);
   });
   // On créer une variable choix produit qui récupère les informations du bouton "addtocart" 
-  let choseproduct = document.querySelector("#addToCart");
+  let choseProduct = document.querySelector("#addToCart");
   // On écoute ce que l'on retourne au bouton
-  choseproduct.addEventListener("click", () => {
+  choseProduct.addEventListener("click", () => {
     if (
       //si l'article a une quantité inférieur à 1 e alors une alerte apparait (||veut dire renvoie vrai si et seulement si au moins un de ses opérandes est vrai. )
       articleClient.quantity < 1 ||

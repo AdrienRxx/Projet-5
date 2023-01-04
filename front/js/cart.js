@@ -3,7 +3,7 @@ import { clearCart, getCart, saveCart } from "./cartManager.js"
 //on créer une variable basket, qui sera dans le localStorage qui aura pour nom "appAdrien1103Kanaps"
 let basket = getCart()
 //on créer une variable basketwithinfo qui est un tableau qui affichera le panier 
-let basketWithInfo = []
+//let basketWithInfo = []
 //si basket renvoi rien alors une alert apparait "votre panier est vide "
 const totalQuantity = document.getElementById('totalQuantity')
 const totalPrice = document.getElementById('totalPrice')
