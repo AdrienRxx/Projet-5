@@ -44,14 +44,7 @@ idRecuperation()
 // ON créer l'objet articleClient 
 function infoArticle() {
 
-
   articleClient._id = id;
-
-  // On récupère le bouton et on lui ajoute un eventlistener "click" 
-  document.getElementById("addToCart").addEventListener("click", function () {
-    //alert("vous avez clické");
-  });
-
 
   // ON ECOUTE LA color 
   const choseColor = document.querySelector("#colors");
@@ -75,7 +68,7 @@ function infoArticle() {
   });
   // On créer une variable choix produit qui récupère les informations du bouton "addtocart" 
   let choseProduct = document.querySelector("#addToCart");
-  // On écoute ce que l'on retourne au bouton
+  // On clique sur le bouton (conditions )
   choseProduct.addEventListener("click", () => {
     if (
       //si l'article a une quantité inférieur à 1 e alors une alerte apparait (||veut dire renvoie vrai si et seulement si au moins un de ses opérandes est vrai. )

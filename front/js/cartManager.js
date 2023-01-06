@@ -29,7 +29,7 @@ export function changeQuantityInCart(article) {
     //on recherche l'item dans le panier en comparant sa couleur et son id 
     const item = items.find((occurence) => occurence.color === article.color && occurence._id === article._id)
     //si l'item existe alors on défini sa quantité 
-    if (item) item.quantity = article.quantity
+    item.quantity = article.quantity
     //sinon on ajoute l'item au panier 
     saveCart(items)
 }

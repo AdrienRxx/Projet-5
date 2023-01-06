@@ -1,31 +1,18 @@
-import { clearCart, getCart, saveCart } from "./cartManager.js"
+import { changeQuantityInCart, clearCart, getCart, saveCart } from "./cartManager.js"
 
 //on créer une variable basket, qui sera dans le localStorage qui aura pour nom "appAdrien1103Kanaps"
 let basket = getCart()
-//on créer une variable basketwithinfo qui est un tableau qui affichera le panier 
-let basketWithInfo = []
 //si basket renvoi rien alors une alert apparait "votre panier est vide "
 const totalQuantity = document.getElementById('totalQuantity')
 const totalPrice = document.getElementById('totalPrice')
-//on créer une variable promises qui sera un tableau 
-const promises = []
-for (let i = 0; i < basket.length; i++) {
-  promises.push(new Promise((resolve) => {
-    fetch("http://localhost:3000/api/products/" + basket[i]._id)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (kanap) {
-        resolve({ ...kanap, quantity: basket[i].quantity, color: basket[i].color })
-
-
-      })
-  }))
-}
+// Pour chaque article qui se trouve dans le panier, on va chercher les informations à partir de l'id. 
+const promises = basket.map((item) =>
+  fetch(`http://localhost:3000/api/products/${item._id}`)
+    .then((response) => response.json())
+    .then((kanap) => ({ ...kanap, quantity: item.quantity, color: item.color }))
+);
 //function querySelect() {
 Promise.all(promises).then((results) => {
-  basketWithInfo = results
-  console.log(results);
   const cartItems = document.querySelector('#cart__items')
   let totalP = 0
   let totalQ = 0
@@ -102,7 +89,6 @@ Promise.all(promises).then((results) => {
       totalPrice.innerText = totalP
       product.quantity = e.target.value
       changeQuantityInCart(product)
-      saveCart(basket)
     })
 
     const cartItemContentSettingsDelete = cartItemContentSettings.appendChild(document.createElement('div'))
