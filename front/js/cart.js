@@ -99,8 +99,7 @@ Promise.all(promises).then((results) => {
     contentSettingsDelete.innerText = 'Supprimer'
     contentSettingsDelete.addEventListener('click', (e) => {
       article.remove()
-      let index = results.indexOf(product);
-      results.splice(index, 1);
+      product.quantity = +e.target.value
       saveCart(results)
 
       updateNumberArticles();

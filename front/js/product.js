@@ -60,7 +60,7 @@ function infoArticle() {
   // On écoute ce qu'il se passe dans input[name="itemQuantity"]
   choseQuantity.addEventListener("input", (eq) => {
     // on récupère la valeur de la cible de l'évenement dans color
-    quantityProduct = eq.target.value;
+    articleClient.quantity = +quantityProduct;
     // on ajoute la quantity à l'objet panierClient
     articleClient.quantity = quantityProduct;
     console.log(quantityProduct);

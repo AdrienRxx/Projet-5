@@ -7,13 +7,15 @@ export function getCart() {
 export function saveCart(items) {
     localStorage.setItem("appAdrien1103Kanaps", JSON.stringify(items))
 }
+
 /** fonction ajout au panier */
 export function addToBasket(article) {
+    console.assert(typeof article.quantity === "number", "%o not a number", article.quantity)
     const items = getCart()
     //on recherche l'item dans le panier en comparant sa couleur et son id 
     const item = items.find((occurence) => occurence.color === article.color && occurence._id === article._id)
     //si l'item existe alors on augmente sa quantité 
-    if (item) item.quantity += article.quantity
+    if (item) item.quantity += +article.quantity
     //sinon on ajoute l'item au panier 
     else items.push(article)
     saveCart(items)
@@ -25,6 +27,7 @@ export function deleteFromCart(article) {
 }
 
 export function changeQuantityInCart(article) {
+    console.assert(typeof article.quantity === "number", "%o not a number", article.quantity)
     const items = getCart()
     //on recherche l'item dans le panier en comparant sa couleur et son id 
     const item = items.find((occurence) => occurence.color === article.color && occurence._id === article._id)
