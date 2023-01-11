@@ -11,7 +11,6 @@ const promises = basket.map((item) =>
     .then((response) => response.json())
     .then((kanap) => ({ ...kanap, quantity: item.quantity, color: item.color }))
 );
-//function querySelect() {
 Promise.all(promises).then((results) => {
   const cartItems = document.querySelector('#cart__items')
   let totalP = 0
@@ -90,7 +89,7 @@ Promise.all(promises).then((results) => {
       product.quantity = e.target.value
       changeQuantityInCart(product)
     })
-
+    //Possibilité de supprimer dans la page et d'actualiser le total 
     const cartItemContentSettingsDelete = cartItemContentSettings.appendChild(document.createElement('div'))
     cartItemContentSettingsDelete.className = 'cart__item__content__settings__delete'
 
@@ -116,40 +115,11 @@ Promise.all(promises).then((results) => {
   totalQuantity.innerText = totalQ
 })
 
-
-//querySelect()
-
-
-
-/*<article class="cart__item" data-id="{product-ID}" data-color="{product-color}">
-        <div class="cart__item__img">
-          <img src="../images/product01.jpg" alt="Photographie d'un canapé">
-        </div>
-        <div class="cart__item__content">
-          <div class="cart__item__content__description">
-            <h2>Nom du produit</h2>
-            <p>Vert</p>
-            <p>42,00 €</p>
-          </div>
-          <div class="cart__item__content__settings">
-            <div class="cart__item__content__settings__quantity">
-              <p>Qté : </p>
-              <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value="42">
-            </div>
-            <div class="cart__item__content__settings__delete">
-              <p class="deleteItem">Supprimer</p>
-            </div>
-          </div>
-        </div>
-      </article>*/
-
-//}
 function pattern() {
-  document.getElementById("firstName").pattern = "\\w{3,16}"
-  document.getElementById("lastName").pattern = "\\w{3,16}"
+  document.getElementById("firstName").pattern = "^[a-zA-Zàâéèëêïîôùüç -]{1,60}$"
+  document.getElementById("lastName").pattern = "^[a-zA-Zàâéèëêïîôùüç -]{1,60}$"
   document.getElementById("address").pattern = "([0-9]*) ?([a-zA-Z,\. ]*)"
-  document.getElementById("city").pattern = "\\w{3,16}"
-  //document.getElementById("email").pattern = "^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$"
+  document.getElementById("city").pattern = "^[a-zA-Zàâéèëêïîôùüç -]{1,60}$"
 }
 pattern()
 

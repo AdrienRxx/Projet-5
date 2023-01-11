@@ -13,7 +13,6 @@ function idRecuperation() {
     })
     .then(function (kanap) {
       const imgItem = document.querySelector(".item__img")
-      // imgItem.innerHTML = `<img src="${kanap.imageUrl}" alt="${kanap.altTxt}">` 
       const img = document.createElement("img")
       img.src = kanap.imageUrl
       img.alt = kanap.altTxt
