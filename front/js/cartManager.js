@@ -10,7 +10,6 @@ export function saveCart(items) {
 
 /** fonction ajout au panier */
 export function addToBasket(article) {
-    console.assert(typeof article.quantity === "number", "%o not a number", article.quantity)
     const items = getCart()
     //on recherche l'item dans le panier en comparant sa couleur et son id 
     const item = items.find((occurence) => occurence.color === article.color && occurence._id === article._id)
@@ -27,7 +26,6 @@ export function deleteFromCart(article) {
 }
 
 export function changeQuantityInCart(article) {
-    console.assert(typeof article.quantity === "number", "%o not a number", article.quantity)
     const items = getCart()
     //on recherche l'item dans le panier en comparant sa couleur et son id 
     const item = items.find((occurence) => occurence.color === article.color && occurence._id === article._id)
